@@ -1,0 +1,104 @@
+<p>buscar-component works!</p>
+ 
+
+<!-- <div class="demo-options">
+  <mat-form-field>
+    <mat-label>Length</mat-label>
+    <input matInput placeholder="Length" type="number" [(ngModel)]="length">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Page Size</mat-label>
+    <input matInput placeholder="Page Size" type="number" [(ngModel)]="pageSize">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Page Index</mat-label>
+    <input matInput placeholder="Page Index" type="number" [(ngModel)]="pageIndex">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Page Size Options</mat-label>
+    <input matInput [ngModel]="pageSizeOptions" (ngModelChange)="setPageSizeOptions($event)"
+           [ngModelOptions]="{updateOn: 'blur'}" placeholder="Ex. 10,25,50">
+  </mat-form-field>
+
+  <div class="demo-toggles">
+    <mat-slide-toggle [(ngModel)]="hidePageSize">Hide page size</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="showPageSizeOptions">Show multiple page size options</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="showFirstLastButtons">Show first/last buttons</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="disabled">Disabled</mat-slide-toggle>
+  </div>
+</div> -->
+
+
+    <div class="buscar-input">
+
+        <mat-form-field appearance="outline">
+  <mat-label>Search</mat-label>
+  <input matInput type="search" (keyup)="applyFilter($event.target.value,1)">
+  <button matSuffix mat-icon-button aria-label="Clear"  (click)="clearSearch()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+
+    </div>
+
+  <div class="mat-elevation-z8">
+
+<mat-table [dataSource]="dataSource">
+      <!-- Define your columns here -->
+      <ng-container matColumnDef="original_title">
+        <mat-header-cell *matHeaderCellDef> Titulo de la pelicula </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.original_title}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="poster_path">
+        <mat-header-cell *matHeaderCellDef> Poster </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <img class="poster" src="https://image.tmdb.org/t/p/original/hY6Ndq1O4JiEngZ7xIOtcLUCDTX.jpg" alt="">{{element.poster_path}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="overview">
+        <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.overview}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="release_date">
+        <mat-header-cell *matHeaderCellDef> Fecha de Lanzamiento </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.release_date}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="vote_average">
+        <mat-header-cell *matHeaderCellDef> Rating </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.vote_average}} </mat-cell>
+      </ng-container>
+
+
+      
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+<mat-paginator #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               [length]="length"
+               [pageSize]="pageSize"
+               [disabled]="disabled"
+               [showFirstLastButtons]="showFirstLastButtons"
+               [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+               [hidePageSize]="hidePageSize"
+               [pageIndex]="pageIndex"
+               aria-label="Select page"
+               (page)="onPageChange($event)">
+</mat-paginator>
+
+</div>
+
+
+<div class="demo-data">
+  <div> Output event: {{(pageEvent | json) || 'No events dispatched yet'}} </div>
+  <div> getNumberOfPages: {{paginator.getNumberOfPages()}} </div>
+</div>
