@@ -57,7 +57,7 @@
       
       <ng-container matColumnDef="poster_path">
         <mat-header-cell *matHeaderCellDef> Poster </mat-header-cell>
-        <mat-cell *matCellDef="let element"> <img class="poster" src="https://image.tmdb.org/t/p/original/hY6Ndq1O4JiEngZ7xIOtcLUCDTX.jpg" alt="">{{element.poster_path}} </mat-cell>
+        <mat-cell *matCellDef="let element"> <img class="poster" src='https://image.tmdb.org/t/p/original/{{element.poster_path}}'   alt=""> </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="overview">
