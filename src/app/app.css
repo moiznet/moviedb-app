@@ -1,0 +1,11 @@
+main.main {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+}
+
+a.linkone {
+    padding-left: 0px;
+    margin-left: -40px;
+}
